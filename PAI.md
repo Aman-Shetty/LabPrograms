@@ -137,7 +137,6 @@ def print_board(randPile, rockList):
         print(f"Pile {i+1}: {'O' * randRock}")
         rockList.append(randRock)
     print("-" * 25)
-    nim_sum(rockList)
 
 def get_valid_input(rockList, player):
     while True:
@@ -159,33 +158,9 @@ def continue_game(rockList, player):
     print("-" * 25)
 
     if rockList != [0] * len(rockList):
-        nim_sum(rockList)
         get_valid_input(rockList, player)
     else:
         print(f"{player} is the winner of this round!")
-        play_again()
-
-def play_again():
-    user = input("Do you want to play again? Enter y for yes, anything for no: ")
-    if user.lower() == 'y':
-        main()
-    else:
-        print("Game over!")
-
-def nim_sum(rockList):
-    nim = 0
-    for stones in rockList:
-        nim ^= stones
-    
-    print(f"Hint: nim sum is {nim}.")
-
-    if nim == 0:
-        print(f"Pick all stones from pile {rockList.index(max(rockList)) + 1}.")
-    else:
-        max_pile = rockList.index(max(rockList)) + 1
-        stones_to_remove = max(rockList) - nim
-        stones_to_remove = max(1, stones_to_remove)
-        print(f"Pick {stones_to_remove} stones from pile {max_pile}.")
 
 main()
 ```
